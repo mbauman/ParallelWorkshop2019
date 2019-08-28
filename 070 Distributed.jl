@@ -292,6 +292,7 @@ A ≈ cumsum(data)
 # headaches.
 
 @everywhere using Distributed
+using DistributedArrays
 @everywhere using DistributedArrays
 A = DArray(I->fill(myid(), length.(I)), (24, 24))
 
@@ -308,6 +309,7 @@ end
 # current data! While we've only talked about master-worker communcation so far,
 # workers can communicate directly amongst themselves, too (by default).
 
+using BenchmarkTools
 @everywhere using BenchmarkTools
 fetch(@spawnat 2 @benchmark $A[1,1])
 
